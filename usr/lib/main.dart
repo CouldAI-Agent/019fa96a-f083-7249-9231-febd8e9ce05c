@@ -1,67 +1,39 @@
 import 'package:flutter/material.dart';
+import 'app_scaffold.dart';
+import 'app_theme.dart';
+import 'screens/home_screen.dart';
+import 'screens/mental_health_screen.dart';
+import 'screens/study_focus_screen.dart';
+import 'screens/lifestyle_screen.dart';
+import 'screens/games_screen.dart';
+import 'screens/quizzes_screen.dart';
+import 'screens/tracker_screen.dart';
+import 'screens/resources_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const TeenWellnessApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class TeenWellnessApp extends StatelessWidget {
+  const TeenWellnessApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Mind & Momentum',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+      theme: AppTheme.lightTheme,
       initialRoute: '/',
       routes: {
-        '/': (context) => const MyHomePage(title: 'Flutter Demo Home Page'),
+        '/': (context) => const AppScaffold(child: HomeScreen()),
+        '/mental_health': (context) => const AppScaffold(child: MentalHealthScreen()),
+        '/study_focus': (context) => const AppScaffold(child: StudyFocusScreen()),
+        '/lifestyle': (context) => const AppScaffold(child: LifestyleScreen()),
+        '/games': (context) => const AppScaffold(child: GamesScreen()),
+        '/quizzes': (context) => const AppScaffold(child: QuizzesScreen()),
+        '/tracker': (context) => const AppScaffold(child: TrackerScreen()),
+        '/resources': (context) => const AppScaffold(child: ResourcesScreen()),
       },
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text('$_counter', style: Theme.of(context).textTheme.headlineMedium),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), 
     );
   }
 }
